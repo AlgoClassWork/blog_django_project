@@ -1,0 +1,11 @@
+<h1> Блог </h1>
+
+{% for post in posts %}
+    <p>
+    {{ post.title }}
+    {{ post.author }}
+    <img src="{{ post.image.url }}">
+    {{ post.content }}
+    {{ post.created_at }}
+    </p>
+{% endfor %}
