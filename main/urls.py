@@ -19,13 +19,15 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from blog.views import home_page
+from blog.views import home_page, post_detail
 
 urlpatterns = [
     # http://127.0.0.1:8000/admin/
     path('admin/', admin.site.urls),
     # http://127.0.0.1:8000/
     path('', home_page),
+    # http://127.0.0.1:8000/detail/7
+    path('detail/<int:id>/', post_detail, name='post_detail')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

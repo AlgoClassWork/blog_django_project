@@ -1,11 +1,23 @@
-<h1> Блог </h1>
+{% load static %}
+<link rel="stylesheet" href="{% static 'home.css' %}" >
 
-{% for post in posts %}
-    <p>
-    {{ post.title }}
-    {{ post.author }}
-    <img src="{{ post.image.url }}">
-    {{ post.content }}
-    {{ post.created_at }}
-    </p>
-{% endfor %}
+<main> 
+    <h1> Блог </h1>
+
+    {% for post in posts %}
+        <article class="blog-post">
+            <h2 class="post-title">{{ post.title }}</h2>
+            <div class="post-meta">
+                Автор: <span class="post-author">{{ post.author }}</span> |
+                Дата: <time datetime="{{ post.created_at | date:'Y-m-d' }}">{{ post.created_at | date:'d.m.Y' }}</time>
+            </div>
+            
+            <img src="{{ post.image.url }}" alt="Изображение для поста: {{ post.title }}">
+            
+            <div class="post-content">
+                {{ post.content | truncatewords:50 }} </div>
+            
+            <a href="{% url 'post_detail' post.id %}" class="read-more">Читать далее &rarr;</a>
+        </article>
+    {% endfor %}
+</main>
