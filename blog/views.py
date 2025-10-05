@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from .models import Post
+from .forms import PostForm
 
 # http://127.0.0.1:8000/
 def home_page(request):
@@ -15,4 +16,5 @@ def post_detail(request, id):
 
 # http://127.0.0.1:8000/create/
 def post_create(request):
-    return render(request, 'post_create.html')
+    form = PostForm()
+    return render(request, 'post_create.html', {'form':form})
