@@ -25,7 +25,7 @@ urlpatterns = [
     # http://127.0.0.1:8000/admin/
     path('admin/', admin.site.urls),
     # http://127.0.0.1:8000/
-    path('', home_page),
+    path('', home_page, name='home_page'),
     # http://127.0.0.1:8000/detail/7
     path('detail/<int:id>/', post_detail, name='post_detail')
 ]
