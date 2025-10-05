@@ -11,3 +11,8 @@ def home_page(request):
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
     return render(request, 'post_detail.html', {'post':post})
+
+
+# http://127.0.0.1:8000/create/
+def post_create(request):
+    return render(request, 'post_create.html')
