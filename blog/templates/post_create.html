@@ -1,1 +1,5 @@
-{{ form }}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <button> Создать пост </button>
+</form>
