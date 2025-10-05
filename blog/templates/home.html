@@ -12,7 +12,9 @@
                 Дата: <time datetime="{{ post.created_at | date:'Y-m-d' }}">{{ post.created_at | date:'d.m.Y' }}</time>
             </div>
             
-            <img src="{{ post.image.url }}" alt="Изображение для поста: {{ post.title }}">
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="Изображение для поста: {{ post.title }}">
+            {% endif %}
             
             <div class="post-content">
                 {{ post.content | truncatewords:50 }} </div>
