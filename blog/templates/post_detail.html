@@ -1,1 +1,15 @@
-Здесь будет подробное описание вашего поста
+{% load static %}
+<link rel="stylesheet" href="{% static 'home.css' %}">
+<article class="blog-post">
+        <h2 class="post-title">{{ post.title }}</h2>
+        <div class="post-meta">
+            Автор: <span class="post-author">{{ post.author }}</span> |
+            Дата: <time datetime="{{ post.created_at | date:'Y-m-d' }}">{{ post.created_at | date:'d.m.Y' }}</time>
+        </div>
+            
+        <img src="{{ post.image.url }}" alt="Изображение для поста: {{ post.title }}">
+            
+    <div class="post-content">
+            {{ post.content }} </div>
+    <a href="{% url 'home_page' %}" class="read-more"> Главная страница </a>
+</article>
