@@ -3,6 +3,14 @@
 
 <main> 
     <h1> Блог </h1>
+
+    <a href=""> Регистрация </a>
+    <a href="{% url 'login' %}"> Войти </a>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button> Выйти </button>
+    </form>
+
     <a href="{% url 'post_create' %}"> Создать пост </a>
     {% for post in posts %}
         <article class="blog-post">
