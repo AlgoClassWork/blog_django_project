@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .forms import PostForm
@@ -14,6 +15,7 @@ def post_detail(request, id):
     return render(request, 'post_detail.html', {'post':post})
 
 # http://127.0.0.1:8000/create/
+@login_required
 def post_create(request):
     form = PostForm()
     if request.method == 'POST':
