@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, UserRegisterForm
 
 # http://127.0.0.1:8000/
 def home_page(request):
@@ -30,4 +31,12 @@ def post_create(request):
 
 # http://127.0.0.1:8000/register/
 def register(request):
-    return render(request, 'register.html')
+    form = UserRegisterForm()
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home_page')
+
+    return render(request, 'register.html', {'form' : form})
