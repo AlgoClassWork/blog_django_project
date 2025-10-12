@@ -1,39 +1,46 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'home.css' %}" >
+<link rel="stylesheet" href="{% static 'home.css' %}">
 
-<main> 
-    <h1> Блог </h1>
+<main class="container">
+    <header class="blog-header">
+        <h1>Блог</h1>
 
-    {% if user.is_authenticated %}
-        <p> Добро пожаловать {{ user.username }} </p>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button> Выйти </button>
-        </form>
-        <a href="{% url 'post_create' %}"> Создать пост </a>
-    {% else %}
-        <a href=""> Регистрация </a>
-        <a href="{% url 'login' %}"> Войти </a>
-    {% endif %}
-
-
-
-    {% for post in posts %}
-        <article class="blog-post">
-            <h2 class="post-title">{{ post.title }}</h2>
-            <div class="post-meta">
-                Автор: <span class="post-author">{{ post.author }}</span> |
-                Дата: <time datetime="{{ post.created_at | date:'Y-m-d' }}">{{ post.created_at | date:'d.m.Y' }}</time>
-            </div>
-            
-            {% if post.image %}
-                <img src="{{ post.image.url }}" alt="Изображение для поста: {{ post.title }}">
+        <nav class="user-nav">
+            {% if user.is_authenticated %}
+                <p>Добро пожаловать, <strong>{{ user.username }}</strong></p>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn logout-btn">Выйти</button>
+                </form>
+                <a href="{% url 'post_create' %}" class="btn create-btn">Создать пост</a>
+            {% else %}
+                <a href="{% url 'register' %}" class="btn">Регистрация</a>
+                <a href="{% url 'login' %}" class="btn">Войти</a>
             {% endif %}
-            
-            <div class="post-content">
-                {{ post.content | truncatewords:50 }} </div>
-            
-            <a href="{% url 'post_detail' post.id %}" class="read-more">Читать далее &rarr;</a>
-        </article>
-    {% endfor %}
+        </nav>
+    </header>
+
+    <section class="posts-list">
+        {% for post in posts %}
+            <article class="blog-post">
+                <h2 class="post-title">{{ post.title }}</h2>
+                <div class="post-meta">
+                    Автор: <span class="post-author">{{ post.author }}</span> |
+                    <time datetime="{{ post.created_at|date:'Y-m-d' }}">{{ post.created_at|date:'d.m.Y' }}</time>
+                </div>
+
+                {% if post.image %}
+                    <div class="post-image">
+                        <img src="{{ post.image.url }}" alt="Изображение для поста: {{ post.title }}">
+                    </div>
+                {% endif %}
+
+                <div class="post-content">
+                    {{ post.content|truncatewords:50 }}
+                </div>
+
+                <a href="{% url 'post_detail' post.id %}" class="read-more">Читать далее →</a>
+            </article>
+        {% endfor %}
+    </section>
 </main>

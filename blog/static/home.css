@@ -1,57 +1,113 @@
-/* ... (Общие стили из первого блока остаются) ... */
-
-/* Стили для каждого поста */
-.blog-post { /* Стилизуем <article> */
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    padding: 25px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.blog-post:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.blog-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.blog-header h1 {
+    font-size: 3rem;
+    color: #2c3e50;
+}
+
+.user-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.logout-btn {
+    background-color: #e74c3c;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+.create-btn {
+    background-color: #2ecc71;
+}
+
+.create-btn:hover {
+    background-color: #27ae60;
+}
+
+.posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.blog-post {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .post-title {
-    font-size: 1.8em;
-    color: #007bff;
-    margin-top: 0; /* Убираем стандартный верхний отступ h2 */
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
 }
 
 .post-meta {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: #777;
     margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px dotted #ccc;
+}
+
+.post-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .post-content {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .read-more {
-    display: inline-block;
-    padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none; /* Убираем подчеркивание */
-    border-radius: 4px;
+    text-decoration: none;
+    color: #3498db;
     font-weight: bold;
-    transition: background-color 0.3s;
 }
 
 .read-more:hover {
-    background-color: #0056b3;
-}
-
-img { /* Стили для изображения */
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-    margin: 15px 0;
-    display: block;
+    text-decoration: underline;
 }

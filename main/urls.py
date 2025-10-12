@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views
 
-from blog.views import home_page, post_detail, post_create
+from blog.views import home_page, post_detail, post_create, register
 
 urlpatterns = [
     # http://127.0.0.1:8000/admin/
@@ -34,7 +34,9 @@ urlpatterns = [
     # http://127.0.0.1:8000/login/
     path('login/', views.LoginView.as_view(template_name='login.html'), name='login' ),
     # http://127.0.0.1:8000/logout/
-    path('logout/', views.LogoutView.as_view(), name='logout' )
+    path('logout/', views.LogoutView.as_view(), name='logout' ),
+    # http://127.0.0.1:8000/register/
+    path('register/', register, name='register' ),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

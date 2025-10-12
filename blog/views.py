@@ -27,3 +27,7 @@ def post_create(request):
             return redirect('home_page')
 
     return render(request, 'post_create.html', {'form':form})
+
+# http://127.0.0.1:8000/register/
+def register(request):
+    return render(request, 'register.html')
