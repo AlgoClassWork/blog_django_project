@@ -12,6 +12,8 @@
         {% endif %}
         
     <div class="post-content">
-            {{ post.content }} </div>
+            {{ post.content }}
+            <p> Кол-во просмотров: {{ post.view_count }} </p>
+    </div>
     <a href="{% url 'home_page' %}" class="read-more"> Главная страница </a>
 </article>

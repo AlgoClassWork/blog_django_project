@@ -37,6 +37,7 @@
 
                 <div class="post-content">
                     {{ post.content|truncatewords:50 }}
+                    <p> Просмотров: {{post.view_count}} </p>
                 </div>
 
                 <a href="{% url 'post_detail' post.id %}" class="read-more">Читать далее →</a>

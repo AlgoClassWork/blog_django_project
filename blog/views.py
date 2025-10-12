@@ -13,6 +13,8 @@ def home_page(request):
 # http://127.0.0.1:8000/detail/6
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
+    post.view_count += 1
+    post.save( update_fields=['view_count'] )
     return render(request, 'post_detail.html', {'post':post})
 
 # http://127.0.0.1:8000/create/

@@ -8,6 +8,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(verbose_name='Дата', auto_now_add=True)
     author = models.ForeignKey(User, verbose_name='Автор', on_delete=models.CASCADE)
     image = models.ImageField(verbose_name='Изображение', upload_to='post_images/', blank=True, null=True)  
+    view_count = models.IntegerField(verbose_name='Кол-во просмотров', default=0)
 
     def __str__(self):
         return self.title
