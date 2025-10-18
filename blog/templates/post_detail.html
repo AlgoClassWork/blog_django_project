@@ -3,6 +3,7 @@
 
 {% if user == post.author %}
     <a href="{% url 'post_delete' id=post.id %}"> Удалить пост </a>
+    <a href="{% url 'post_update' id=post.id %}"> Редактировать пост </a>
 {% endif %}
 
 
