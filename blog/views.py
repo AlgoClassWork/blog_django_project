@@ -31,13 +31,31 @@ def post_create(request):
 
     return render(request, 'post_create.html', {'form':form})
 
-# http://127.0.0.1:8000/create/
+# http://127.0.0.1:8000/delete/8
 @login_required
 def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
     if post.author == request.user:
         post.delete()
     return redirect('home_page')
+
+# http://127.0.0.1:8000/update/2
+@login_required
+def post_update(request, id):
+    post = get_object_or_404(Post, id=id)
+    form = PostForm(instance=post)
+
+    if post.author != request.user:
+        return redirect('home_page')
+
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('home_page')
+    
+    return render(request, 'post_update.html', {'form':form})
+
 
 # http://127.0.0.1:8000/register/
 def register(request):
