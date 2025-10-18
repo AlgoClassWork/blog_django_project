@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib.auth import views
 
-from blog.views import home_page, post_detail, post_create, register, post_delete
+from blog.views import *
 
 urlpatterns = [
     # http://127.0.0.1:8000/admin/
@@ -33,6 +33,8 @@ urlpatterns = [
     path('create/', post_create, name='post_create'),
     # http://127.0.0.1:8000/delete/3
     path('delete/<int:id>/', post_delete, name='post_delete'),
+    # http://127.0.0.1:8000/update/21
+    path('update/<int:id>/', post_update, name='post_update'),
     # http://127.0.0.1:8000/login/
     path('login/', views.LoginView.as_view(template_name='login.html'), name='login' ),
     # http://127.0.0.1:8000/logout/
