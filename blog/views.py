@@ -7,7 +7,7 @@ from .forms import PostForm, UserRegisterForm
 
 # http://127.0.0.1:8000/
 def home_page(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created_at')
     return render(request, 'home.html', {'posts' : posts})
 
 # http://127.0.0.1:8000/detail/6
@@ -30,6 +30,14 @@ def post_create(request):
             return redirect('home_page')
 
     return render(request, 'post_create.html', {'form':form})
+
+# http://127.0.0.1:8000/create/
+@login_required
+def post_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    if post.author == request.user:
+        post.delete()
+    return redirect('home_page')
 
 # http://127.0.0.1:8000/register/
 def register(request):
