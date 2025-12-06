@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<h2>Список игр</h2>
+
+<ul class="game-list">
+    {% for game in games %}
+        <li class="game-item">
+            <a class="game-title" href="{% url 'game_detail' game.pk %}">
+                {{ game.title }}
+            </a>
+            <div class="game-meta">
+                Жанр: {{ game.genre }} • Год: {{ game.release_year }}
+            </div>
+        </li>
+    {% empty %}
+        <li class="game-item">Игр пока нет.</li>
+    {% endfor %}
+</ul>
+
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+{% endif %}
+
+Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+{% endif %}
+
+
+{% endblock %}

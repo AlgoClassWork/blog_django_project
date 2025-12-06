@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ game.title }}</h1>
+
+    <ul class="list-unstyled">
+        <li><strong>Жанр:</strong> {{ game.genre }}</li>
+        <li><strong>Год выхода:</strong> {{ game.release_year }}</li>
+        <li><strong>Добавлено:</strong> {{ game.created_at|date:"d.m.Y H:i" }}</li>
+    </ul>
+
+    {% if game.description %}
+        <h3>Описание</h3>
+        <p>{{ game.description|linebreaks }}</p>
+    {% else %}
+        <p><em>Описание отсутствует.</em></p>
+    {% endif %}
+
+    <a href="{% url 'game_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+{% endblock %}
